@@ -13,6 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use(require('./routes/index'));
+app.use('/api/data/', require('./routes/sensor'));
 
 // Starting the server
 app.listen(3000, () => {

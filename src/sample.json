@@ -1,0 +1,18 @@
+[
+    {
+        "id": "1",
+        "user": "Jhoan Cardona",
+        "email": "jscardonag@eafit.edu.co",
+        "temperature": "20",
+        "humidity": "25",
+        "gps": "10.2"
+    }, 
+    {
+        "id": "2",
+        "user": "Stiven Galeano",
+        "email": "jhoancardona07@gmail.com",
+        "temperature": "30",
+        "humidity": "11",
+        "gps": "8.5"
+    }
+]
