@@ -26,8 +26,13 @@ Nota: Las opciones de visualización y procesamiento de datos se dejan a la libe
 
 
 ¿CUALES SON LOS REQUISITOS NO FUNCIONALES DE LA APP?
-
-
+* Seguridad: Solo los usuarios autenticados con un token especial pueden acceder a los datos obtenidos por el sensor.
+* Seguridad: Debe existir un método de autenticación para los usuarios.
+* Seguridad: Solo los sensores que cuenten con un token valido pueden almacenar datos en la base de datos.
+* Persistencia: Se debe de garantizar la persistencia de los datos almacenados por los sensores en la BD.
+* Persistencia: El sistema antes de almacenar los datos en la BD debe validar que este correcta la información de 
+                cada uno de estos datos.
+* Persistencia: El sistema debe validar que el correo recibido ya no se encuentre almacenado en el sistema.
 
 ¿QUÉ TECNOLOGÍA DE DESARROLLO UTILIZÓ?
 4.1 EN EL BACKEND?
@@ -52,6 +57,10 @@ A través del uso de tecnologías como lo son los JWT, que le permiten generar u
 pueda consumir las rutas privadas que requieran de una autorización, entonces a cada usuario cada vez que hace log-in se le
 entrega su token para que lo pueda consumir y acceder a las diferentes rutas que lo requieren, y al momento de hacer un log-out
 pierde dicho token.
+
+Además se puede implementar la seguridad en la REST API que conecta al backend con el sensor mediante el uso de la dirección
+MAC del sensor, generando un JWT exclusivo para cada sensor, el cual cuenta con una duración de X tiempo para que solamente
+los sensores que cuenten con un JWT válido puedan almacenar datos en el sensor.
 
 ¿CUALES SON LAS PRINCIPALES DIFICULTADES QUE TUVO AL DESARROLLAR EL PROYECTO?
 7.1 POR DESCONOCIMIENTO DE LA TECNOLOGÍA?
