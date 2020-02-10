@@ -1,37 +1,42 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/Post');
+const Data = require('../models/Data');
+const verify = require('./verifyToken');
 
-// Gets all the posts
-router.get('/', async (req, res) => {
-    try {
-        const posts = await Post.find();
-        res.json(posts);
-    } catch(err){
-        res.json({ message: err });
-    }
-});
-
-// Submit a new post
+// Submit new data from the Sensor(Postman)
 router.post('/', async (req, res) => {
-    const post = new Post({
-        title: req.body.title,
-        description: req.body.description
+    const data = new Data({
+        email: req.body.email,
+        temperature: req.body.temperature,
+        humidity: req.body.humidity,
+        latitude: req.body.latitude,
+        altitude: req.body.altitude,
     });
 
     try{
-    const savedPost = await post.save()
-    res.json(savedPost);
+    const savedData = await data.save()
+    res.json(savedData);
     } catch (err) {
         res.json({ message: err });
     }
 });
 
-// Get an specific post
-router.get('/:postId', async (req, res) => {
+// Gets all the data
+router.get('/', verify, async (req, res) => {
     try {
-        const post = await Post.findById(req.params.postId);
-   res.json(post);
+        const data = await Data.find();
+        res.json(data);
+    } catch(err){
+        res.json({ message: err });
+    }
+});
+
+
+// Get an specific data
+router.get('/:dataId', async (req, res) => {
+    try {
+        const data = await Data.findById(req.params.postId);
+   res.json(data);
     } catch(err){
         res.json({ message: err });
     }
@@ -40,8 +45,8 @@ router.get('/:postId', async (req, res) => {
 // Delete an specific post
 router.delete('/:postId', async (req, res) => {
     try {
-        const removedPost = await Post.remove({ _id: req.params.postId });
-        res.json(removedPost);
+        const removedData = await Data.remove({ _id: req.params.dataId });
+        res.json(removedData);
     } catch (err){
         res.json({ message: err });
     }
@@ -50,11 +55,11 @@ router.delete('/:postId', async (req, res) => {
 // Update an specific post
 router.patch('/:postId', async (req, res) => {
     try {
-        const updatedPost = await Post.updateOne(
-            { _id: req.params.postId },
+        const updatedData = await Data.updateOne(
+            { _id: req.params.dataId },
             { $set: {title: req.body.title }}
         );
-        res.json(updatedPost);
+        res.json(updatedData);
     } catch (err){
         res.json({ message: err });
     }

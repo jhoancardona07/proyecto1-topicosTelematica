@@ -15,14 +15,9 @@ app.use(bodyParser.json());
 const postRoutes = require('./routes/posts');
 const authRoutes = require('./routes/auth');
 const testRoutes = require('./routes/tests');
-app.use('/posts', postRoutes);
+app.use('/api/posts', postRoutes);
 app.use('/api/user', authRoutes);
 app.use('/api/tests', testRoutes);
-
-// Routes
-app.get('/', (req, res) => {
-    res.send('We are on home');
-});
 
 // Connect to DB
 mongoose.connect('mongodb://localhost/apirest', { useNewUrlParser: true })
